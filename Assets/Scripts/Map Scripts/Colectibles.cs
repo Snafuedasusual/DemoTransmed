@@ -15,12 +15,16 @@ public class Colectibles : MonoBehaviour
         _bx = GetComponent<BoxCollider2D>();
         int minRand = 0;
         int maxRand = _clues.transform.childCount;
+        gameObject.SetActive(true);
+
 
         for (int i = 0; i <= 4; i++)
         {
+            _clues.transform.GetChild(Random.Range(minRand,maxRand)).gameObject.SetActive(true);
             
-            Debug.Log("yes!");
         }
+
+
     }
 
     // Update is called once per frame

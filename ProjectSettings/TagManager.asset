@@ -9,6 +9,7 @@ TagManager:
   - Stings
   - Spots
   - Colectibles
+  - NextStage
   layers:
   - Default
   - TransparentFX
