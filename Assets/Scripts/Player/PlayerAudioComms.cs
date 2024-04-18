@@ -8,16 +8,18 @@ public class PlayerAudioComms : MonoBehaviour
     public bool playerEXT = true;
     public bool playerSafe = true;
     public float mentalState = 100f;
+    public float mentalStateFull = 100f;
     public bool insideDemonRoom = false;
     public int outside = 6;
     public int demonroomRate = 3;
     public float mentalStateDrain = 4f;
     public int colectibles = 0;
+    public bool colectiblesFull = false;
     [SerializeField] GameObject _nextStage;
 
     private void Start()
     {
-        _nextStage = GameObject.FindGameObjectWithTag("NextStage");
+        _nextStage = GameObject.FindGameObjectWithTag("Finisher");
     }
 
     private void Update()
@@ -27,9 +29,10 @@ public class PlayerAudioComms : MonoBehaviour
             gameObject.SetActive(false);
             Debug.Log("You died!");
         }
-     if (colectibles >= 3)
+     if (colectibles >= 3 && colectiblesFull == false)
         {
-            _nextStage.gameObject.SetActive(true);
+            _nextStage.transform.GetChild(0).gameObject.SetActive(true);
+            _nextStage.transform.GetChild(1).gameObject.SetActive(true);
         }
     }
 
@@ -65,11 +68,12 @@ public class PlayerAudioComms : MonoBehaviour
                     mentalState += mentalStateDrain;
                     Debug.Log(mentalState);
                 }
-                    
+
             }
             else
             {
-
+                yield return new WaitForSecondsRealtime(outside);
+                Debug.Log("Health Full!");
             }
             
         }

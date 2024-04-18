@@ -22,13 +22,11 @@ public class NextStage : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && _pac.colectibles >= 3)
         {
-            if(_pac.colectibles >= 3)
-            {
-                collision.gameObject.SetActive(false);
-            }
-            
+            collision.gameObject.SetActive(false);
+            Debug.Log("Onto the next floor...");
         }
+    
     }
 }
